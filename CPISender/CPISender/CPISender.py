@@ -7,13 +7,16 @@ addr = ("127.0.0.1", 4000)
 
 file_name = "/home/ubuntu/workspace/CPISender/CPISender/CPISender/15_09_00.0347.bin"
 
+count = 0
 with open(file_name,"rb") as f:
-	data = f.read(9000)
+	data = f.read(6162)
 	#data, server = client_socket.recvfrom(1024)
 	while(data):
 		if(client_socket.sendto(data,addr)):
+			data = f.read(6162)
 			print("Sending..")
-			data = f.read(9000)
+			count = count + 1
+print(count)
 
 client_socket.close()
 f.close()
